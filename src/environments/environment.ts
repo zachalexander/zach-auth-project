@@ -5,12 +5,13 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyAc9Tt8pQQF3ntu2Tz66iUKl_fXHtdhIyc',
-    authDomain: 'firestarter-96e46.firebaseapp.com',
-    databaseURL: 'https://firestarter-96e46.firebaseio.com',
-    projectId: 'firestarter-96e46',
-    storageBucket: 'firestarter-96e46.appspot.com',
-    messagingSenderId: '581326886241'
+    apiKey: 'AIzaSyAQ5JN94c6ZVo_tkboJNpEEbniQzce9Ikk',
+    authDomain: 'zach-medium-7afb0.firebaseapp.com',
+    databaseURL: 'https://zach-medium-7afb0.firebaseio.com',
+    projectId: 'zach-medium-7afb0',
+    storageBucket: 'zach-medium-7afb0.appspot.com',
+    messagingSenderId: '770666926783',
+    appId: '1:770666926783:web:fa3a7293bc7ecc4a'
   }
 };
 

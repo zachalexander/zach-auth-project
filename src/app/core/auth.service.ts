@@ -18,6 +18,7 @@ interface User {
   email?: string | null;
   photoURL?: string;
   displayName?: string;
+  age?: number;
 }
 
 @Injectable()
@@ -69,7 +70,7 @@ export class AuthService {
     return this.afAuth.auth
       .signInWithPopup(provider)
       .then(credential => {
-        this.notify.update('Welcome to Firestarter!!!', 'success');
+        this.notify.update('Welcome to Firestarter!', 'success');
         return this.updateUserData(credential.user);
       })
       .catch(error => this.handleError(error));
@@ -77,17 +78,17 @@ export class AuthService {
 
   //// Anonymous Auth ////
 
-  anonymousLogin() {
-    return this.afAuth.auth
-      .signInAnonymously()
-      .then(credential => {
-        this.notify.update('Welcome to Firestarter!!!', 'success');
-        return this.updateUserData(credential.user); // if using firestore
-      })
-      .catch(error => {
-        this.handleError(error);
-      });
-  }
+  // anonymousLogin() {
+  //   return this.afAuth.auth
+  //     .signInAnonymously()
+  //     .then(credential => {
+  //       this.notify.update('Welcome to Firestarter!!!', 'success');
+  //       return this.updateUserData(credential.user); // if using firestore
+  //     })
+  //     .catch(error => {
+  //       this.handleError(error);
+  //     });
+  // }
 
   //// Email/Password Auth ////
 
@@ -143,7 +144,20 @@ export class AuthService {
       uid: user.uid,
       email: user.email || null,
       displayName: user.displayName || 'nameless user',
-      photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ'
+      photoURL: user.photoURL || 'https://goo.gl/Fz9nrQ',
+      age: user.age || null,
+    };
+    return userRef.set(data);
+  }
+
+  private updateUsername(user: User) {
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(
+      `users/${user.uid}`
+    );
+
+    const data: User = {
+      uid: user.uid,
+      displayName: user.displayName
     };
     return userRef.set(data);
   }
